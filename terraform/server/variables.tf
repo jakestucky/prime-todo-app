@@ -1,6 +1,6 @@
 variable "aws_account_id" {
     type = string
-    default = ""
+    default = "908780811191"
 }
 
 variable "lambda_function_name" {
@@ -10,5 +10,5 @@ variable "lambda_function_name" {
 
 variable "s3_bucket_website_endpoint" {
     type = string
-    default = ""
+    default = "jakesprimetestbucket.s3-website-us-east-1.amazonaws.com"
 }

@@ -1,12 +1,14 @@
-import axios, { AxiosResponse } from 'axios'
+import axios, { AxiosResponse } from 'axios';
 
 // API Gateway URL (Copy your own and update here)
-const apiGatewayUrl: string = 'api_gateway_invoke_url';
-const baseUrl: string = 'https://cors-anywhere.herokuapp.com/' + apiGatewayUrl + '/primeTodoLambda';
+const apiGatewayUrl: string =
+  'https://tnut104fqj.execute-api.us-east-1.amazonaws.com/main-stage';
+const baseUrl: string =
+  'https://cors-anywhere.herokuapp.com/' + apiGatewayUrl + '/primeTodoLambda';
 
 export const getTodoList = async (): Promise<AxiosResponse<ApiDataType>> => {
   try {
-    const params = { "requestType": 'read' };
+    const params = { requestType: 'read' };
     console.log('Get TODO Items with Params:', params);
     const todoList: AxiosResponse<ApiDataType> = await axios.post(
       baseUrl,
@@ -15,9 +17,9 @@ export const getTodoList = async (): Promise<AxiosResponse<ApiDataType>> => {
     console.log('Get Response:', todoList);
     return todoList;
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
 export const addTodo = async (
   formData: ITodo
@@ -26,19 +28,19 @@ export const addTodo = async (
     const params = {
       name: formData.name,
       description: formData.description,
-      requestType: 'create'
-    }
+      requestType: 'create',
+    };
     console.log('Add TODO Item with Params:', params);
     const saveTodo: AxiosResponse<ApiDataType> = await axios.post(
       baseUrl,
       params
-    )
+    );
     console.log('Save Response:', saveTodo);
-    return saveTodo
+    return saveTodo;
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
 export const updateTodo = async (
   formData: ITodo
@@ -49,19 +51,19 @@ export const updateTodo = async (
       name: formData.name,
       description: formData.description,
       status: true,
-      requestType: 'update'
-    }
+      requestType: 'update',
+    };
     console.log('Update TODO Item with Params:', params);
     const updatedTodo: AxiosResponse<ApiDataType> = await axios.post(
       baseUrl,
       params
-    )
+    );
     console.log('Update Response:', updatedTodo);
-    return updatedTodo
+    return updatedTodo;
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
 export const deleteTodo = async (
   id: string
@@ -69,16 +71,16 @@ export const deleteTodo = async (
   try {
     const params = {
       id: id,
-      requestType: 'delete'
-    }
+      requestType: 'delete',
+    };
     console.log('Delete TODO Item with Params:', params);
     const deletedTodo: AxiosResponse<ApiDataType> = await axios.post(
       baseUrl,
       params
     );
     console.log('Delete Response:', deletedTodo);
-    return deletedTodo
+    return deletedTodo;
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
